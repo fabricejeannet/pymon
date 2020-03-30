@@ -1,35 +1,32 @@
+import random
 
-def start():
-    sequence.clear()
-    append_new_entry_to_sequence()
+def start_sequence():
+    sequence = []
+    for value in range(4):
+        sequence.append(random.randint(0,3))
+    return sequence
 
-def append_new_entry_to_sequence():
-    sequence.append(0)    
+def is_correct(sequence, index, input):
+    return sequence[index] == input
 
-def is_correct(index, value):
-    print (sequence)
-    return sequence[index] == value
-
-sequence = []
 RED = 0
 GREEN = 1
 BLUE = 2
 YELLOW = 3
 #-------------------------------------------------------------
 
-def test_first_sequence_contains_one_element():
-    start()
-    assert len(sequence) == 1
-    
-def test_sequence_grows_one_by_one():
-    start()
-    append_new_entry_to_sequence();
-    assert len(sequence) == 2
+def test_a_sequence_sarts_with_four_elements():
+    sequence = start_sequence()
+    assert len(sequence) == 4
 
-def test_returns_true_when_value_matches_list_value_for_the_given_index():
-    start()
-    sequence = [RED, GREEN, BLUE, YELLOW]
-    assert is_correct(1, GREEN) == True
+def test_testing_a_good_input_returns_true():
+    sequence = [RED,GREEN, BLUE]
+    assert is_correct(sequence, 1, GREEN) == True
+
+def test_testing_a_wrong_input_returns_false():
+    sequence = [RED,GREEN, BLUE]
+    assert is_correct(sequence, 1, BLUE) == False
+
     
 
 
